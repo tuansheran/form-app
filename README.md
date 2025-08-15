@@ -19,8 +19,8 @@ A React + Next.js client onboarding form using **React Hook Form** and **Zod** f
 1. **Clone the repository**:
 
 ```bash
-git clone https://github.com/yourusername/client-onboarding-form.git
-cd client-onboarding-form
+git clone https://github.com/tuansheran/form-app
+cd form-app
 ```
 
 2. **Install dependencies using Yarn**:
