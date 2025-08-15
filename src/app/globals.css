@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -19,8 +20,14 @@
   }
 }
 
+
+html, body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
 body {
-  background: #E4004B;
+  background: linear-gradient(to bottom, #e67a9e 0%, #e35283 100%);
   color: 'black';
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
 }

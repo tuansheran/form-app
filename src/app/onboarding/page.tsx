@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { inputClass } from "@/constants/styles";
 
-// Validation schema
+
+
 const schema = z.object({
   fullName: z
     .string()
@@ -54,7 +56,7 @@ export default function OnboardingPage() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await fetch("https://reqres.in/api/users", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ONBOARD_URL!, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -75,22 +77,22 @@ export default function OnboardingPage() {
         {/* Full name */}
         <div>
           <label>Full Name</label>
-          <input {...register("fullName")} className="border p-2 w-full rounded-4xl" />
-          {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
+          <input {...register("fullName")} className={inputClass}/>
+          {errors.fullName && <p className="text-red-800">{errors.fullName.message}</p>}
         </div>
 
         {/* Email */}
         <div>
           <label>Email</label>
-          <input {...register("email")} className="border p-2 w-full" />
-          {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+          <input {...register("email")} className={inputClass} />
+          {errors.email && <p className="text-red-800">{errors.email.message}</p>}
         </div>
 
         {/* Company */}
         <div>
           <label>Company Name</label>
-          <input {...register("companyName")} className="border p-2 w-full" />
-          {errors.companyName && <p className="text-red-500">{errors.companyName.message}</p>}
+          <input {...register("companyName")} className={inputClass} />
+          {errors.companyName && <p className="text-red-800">{errors.companyName.message}</p>}
         </div>
 
         {/* Services */}
@@ -98,13 +100,13 @@ export default function OnboardingPage() {
           <label>Services Interested In</label>
           <div className="space-y-1">
             {["UI/UX", "Branding", "Web Dev", "Mobile App"].map((service) => (
-              <label key={service} className="flex items-center space-x-2">
+              <label key={service} className="flex items-center space-x-2 rounded-b-full">
                 <input type="checkbox" value={service} {...register("services")} />
                 <span>{service}</span>
               </label>
             ))}
           </div>
-          {errors.services && <p className="text-red-500">{errors.services.message}</p>}
+          {errors.services && <p className="text-red-800">{errors.services.message}</p>}
         </div>
 
         {/* Budget */}
@@ -113,16 +115,16 @@ export default function OnboardingPage() {
           <input
             type="number"
             {...register("budget", { valueAsNumber: true })}
-            className="border p-2 w-full"
+            className={inputClass}
           />
-          {errors.budget && <p className="text-red-500">{errors.budget.message}</p>}
+          {errors.budget && <p className="text-red-800">{errors.budget.message}</p>}
         </div>
 
         {/* Start date */}
         <div>
           <label>Project Start Date</label>
-          <input type="date" {...register("startDate")} className="border p-2 w-full" />
-          {errors.startDate && <p className="text-red-500">{errors.startDate.message}</p>}
+          <input type="date" {...register("startDate")} className={inputClass} />
+          {errors.startDate && <p className="text-red-800">{errors.startDate.message}</p>}
         </div>
 
         {/* Terms */}
@@ -131,20 +133,20 @@ export default function OnboardingPage() {
             <input type="checkbox" {...register("acceptTerms")} />
             <span>I accept the terms and conditions</span>
           </label>
-          {errors.acceptTerms && <p className="text-red-500">{errors.acceptTerms.message}</p>}
+          {errors.acceptTerms && <p className="text-red-800">{errors.acceptTerms.message}</p>}
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-[#E67A9E] text-white px-4 py-2 rounded-3xl"
         >
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
 
       {serverMessage && (
-        <p className={`mt-4 ${serverMessage.includes("Error") ? "text-red-500" : "text-green-600"}`}>
+        <p className={`mt-4 ${serverMessage.includes("Error") ? "text-red-800" : "text-green-600"}`}>
           {serverMessage}
         </p>
       )}
